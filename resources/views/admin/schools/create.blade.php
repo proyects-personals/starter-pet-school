@@ -1,118 +1,218 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboards') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h1 class="text-3xl font-semibold mb-6">Dashboard del Administrador</h1>
-                    
-                    <h2 class="text-2xl font-medium mb-4">Crear Escuela</h2>
-
-                    <form action="{{ route('schools.store') }}" method="POST" class="space-y-6">
-                        @csrf
-                        <!-- Nombre de la escuela -->
-                        <div>
-                            <label for="name" class="block text-lg font-medium text-gray-700 dark:text-gray-300">Nombre de la Escuela</label>
-                            <input 
-                                type="text" 
-                                name="name" 
-                                id="name" 
-                                required 
-                                class="mt-2 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            >
-                            @error('name')
-                                <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <!-- Descripción -->
-                        <div>
-                            <label for="description" class="block text-lg font-medium text-gray-700 dark:text-gray-300">Descripción</label>
-                            <textarea 
-                                name="description" 
-                                id="description" 
-                                rows="4" 
-                                class="mt-2 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            ></textarea>
-                            @error('description')
-                                <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <!-- Dirección -->
-                        <div>
-                            <label for="address" class="block text-lg font-medium text-gray-700 dark:text-gray-300">Dirección</label>
-                            <input 
-                                type="text" 
-                                name="address" 
-                                id="address" 
-                                required
-                                class="mt-2 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            >
-                            @error('address')
-                                <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <!-- Teléfono -->
-                        <div>
-                            <label for="phone_number" class="block text-lg font-medium text-gray-700 dark:text-gray-300">Teléfono</label>
-                            <input 
-                                type="text" 
-                                name="phone_number" 
-                                id="phone_number" 
-                                class="mt-2 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            >
-                            @error('phone_number')
-                                <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <!-- Correo electrónico -->
-                        <div>
-                            <label for="email" class="block text-lg font-medium text-gray-700 dark:text-gray-300">Correo Electrónico</label>
-                            <input 
-                                type="email" 
-                                name="email" 
-                                id="email" 
-                                class="mt-2 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            >
-                            @error('email')
-                                <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <!-- Imagen -->
-                        <div>
-                            <label for="image" class="block text-lg font-medium text-gray-700 dark:text-gray-300">Imagen</label>
-                            <input 
-                                type="file" 
-                                name="image" 
-                                id="image" 
-                                class="mt-2 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            >
-                            @error('image')
-                                <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <!-- Botón de enviar -->
-                        <div>
-                            <button 
-                                type="submit" 
-                                class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                            >
-                                Crear Escuela
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{{asset('assets-back/vendors/mdi/css/materialdesignicons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets-back/vendors/css/vendor.bundle.base.css')}}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="{{asset('assets-back/css/style.css')}}">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="{{asset('assets-back/images/favicon.png')}}" />
+    
+  
+  
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_sidebar.html -->
+     <!-- cambiar color-->
+     <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:#2d3e50;">
+      <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top" style="background-color:#2d3e50;">
+        <a class="sidebar-brand brand-logo" href="../../index.html"><img src="{{asset('assets-back//images/logo.svg')}}" alt="logo" /></a>
+          
+          <a class="sidebar-brand brand-logo-mini" href="../../index.html"><img src="{{asset('assets-back//images/logo-mini.svg')}}" alt="logo" /></a>
         </div>
+        <ul class="nav">
+         
+          
+          <li class="nav-item menu-items">
+            <a class="nav-link"  href="{{ route('admin.dashboard')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+              </span>
+              <span class="menu-title">Administrador</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link"  href="">
+              <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+              </span>
+              <span class="menu-title">Crear escuela</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link"  href="{{ route('classrooms.create')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+              </span>
+              <span class="menu-title">Crear aula</span>
+            </a>
+          </li>
+         
+          
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_navbar.html -->
+        <nav class="navbar p-0 fixed-top d-flex flex-row" style="background-color: #2d3e50;">
+          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="{{asset('assets-back/images/logo-mini.svg" alt="logo')}}" /></a>
+          </div>
+          <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+              <span class="mdi mdi-menu"></span>
+            </button>
+           
+            <ul class="navbar-nav navbar-nav-right">
+              
+             
+              <li class="nav-item dropdown">
+                <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
+                  <div class="navbar-profile">
+                    <i class="fa-solid fa-user"></i>
+                  
+                    <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                  </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
+                    <div class="dropdown-divider"></div>
+                  
+                    <!-- Opción de cerrar sesión como enlace -->
+                    <a class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon bg-dark rounded-circle">
+                          <i class="mdi mdi-logout text-danger"></i>
+                        </div>
+                      </div>
+                      <div class="dropdown-divider"></div>
+                      <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="dropdown-item text-black">
+                          <p class="preview-subject mb-1">Log out</p>
+                        </button>
+                      </form>
+                    </div>
+                    </a>
+                  
+                    <!-- Opción de cerrar sesión como botón en un formulario -->
+                   
+                  
+              </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="mdi mdi-format-line-spacing"></span>
+            </button>
+          </div>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper  "style="background-color: slategrey ">
+            <div class="page-header">
+              <h3 class="page-title block text-lg font-medium text-black">Escuelas</h3>
+             
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+                  <div class="card shadow-lg" style="background-color: white;">
+                      <div class="card-body">
+                          <h2 class="text-2xl font-medium mb-4 text-center text-lg font-bold text-black">Crear Escuela</h2>
+                          
+                          <form action="{{ route('schools.store') }}" method="POST" enctype="multipart/form-data">
+                              @csrf
+                              <div class="mb-4">
+                                  <label for="name" class="form-label font-weight-bold text-black">Nombre de la Escuela</label>
+                                  <input type="text" name="name" id="name" required class="form-control">
+                                  @error('name')
+                                      <span class="text-danger text-sm mt-1">{{ $message }}</span>
+                                  @enderror
+                              </div>
+          
+                              <div class="mb-4">
+                                  <label for="description" class="form-label font-weight-bold text-black">Descripción</label>
+                                  <textarea name="description" id="description" rows="4" class="form-control text-black" placeholder="Escribe la descripción aquí..."></textarea>
+                                  @error('description')
+                                      <span class="text-danger text-sm mt-1">{{ $message }}</span>
+                                  @enderror
+                              </div>
+                              
+                              <div class="mb-4">
+                                  <label for="address" class="form-label font-weight-bold text-black">Dirección</label>
+                                  <input type="text" name="address" id="address" required class="form-control text-black">
+                                  @error('address')
+                                      <span class="text-danger text-sm mt-1">{{ $message }}</span>
+                                  @enderror
+                              </div>
+          
+                              <div class="mb-4">
+                                  <label for="phone_number" class="form-label font-weight-bold text-black">Teléfono</label>
+                                  <input type="text" name="phone_number" id="phone_number" class="form-control text-black">
+                                  @error('phone_number')
+                                      <span class="text-danger text-sm mt-1">{{ $message }}</span>
+                                  @enderror
+                              </div>
+          
+                              <div class="mb-4">
+                                  <label for="email" class="form-label font-weight-bold text-black">Correo Electrónico</label>
+                                  <input type="email" name="email" id="email" class="form-control text-black">
+                                  @error('email')
+                                      <span class="text-danger text-sm mt-1">{{ $message }}</span>
+                                  @enderror
+                              </div>
+          
+                              <div class="mb-4">
+                                  <label for="image" class="form-label font-weight-bold text-black">Imagen</label>
+                                  <input type="file" name="image" id="image" class="form-control text-black">
+                                  @error('image')
+                                      <span class="text-danger text-sm mt-1">{{ $message }}</span>
+                                  @enderror
+                              </div>
+          
+                              <div class="text-center mt-4">
+                                  <button type="submit" class="btn btn-success w-100 font-weight-bold text-white">
+                                      Crear Escuela
+                                  </button>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+          
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
     </div>
-</x-app-layout>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="{{asset('assets-back/vendors/js/vendor.bundle.base.js')}}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{{asset('assets-back/js/off-canvas.js')}}"></script>
+    <script src="{{asset('assets-back/js/hoverable-collapse.js')}}"></script>
+    <script src="{{asset('assets-back/js/misc.js')}}"></script>
+    <script src="{{asset('assets-back/js/settings.js')}}"></script>
+    <script src="{{asset('assets-back/js/todolist.js')}}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <!-- End custom js for this page -->
+  </body>
+</html>
+
