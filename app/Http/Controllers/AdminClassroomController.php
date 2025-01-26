@@ -32,4 +32,36 @@ class AdminClassroomController extends Controller
 
         return redirect()->route('admin.dashboard')->with('success', 'Aula creada exitosamente.');
     }
+
+    public function index()
+    {
+        $classrooms = Classroom::all(); // O también puedes agregar paginación: ->paginate(10)
+        return view('admin.classrooms.index', compact('classrooms'));
+    }
+
+    // Mostrar el formulario de edición de un aula
+    public function edit(Classroom $classroom)
+    {
+        return view('admin.classrooms.edit', compact('classroom'));
+    }
+
+    // Actualizar el aula
+    public function update(Request $request, Classroom $classroom)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'capacity' => 'required|integer|min:1',
+        ]);
+
+        $classroom->update($request->only(['name', 'capacity']));
+
+        return redirect()->route('classrooms.index')->with('success', 'Aula actualizada correctamente');
+    }
+
+    // Eliminar un aula
+    public function destroy(Classroom $classroom)
+    {
+        $classroom->delete();
+        return redirect()->route('classrooms.index')->with('success', 'Aula eliminada correctamente');
+    }
 }

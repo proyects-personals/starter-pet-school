@@ -43,23 +43,39 @@
               <span class="menu-title">Administrador</span>
             </a>
           </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link"  href="">
+          <li class="nav-item menu-items {{ Route::currentRouteName() == 'schools.create' ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('schools.create') }}">
+        <span class="menu-icon">
+            <i class="mdi mdi-table-large"></i>
+        </span>
+        <span class="menu-title">Crear escuela</span>
+    </a>
+</li>
+<li class="nav-item menu-items {{ Route::currentRouteName() == 'classrooms.create' ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('classrooms.create') }}">
+        <span class="menu-icon">
+            <i class="mdi mdi-table-large"></i>
+        </span>
+        <span class="menu-title">Crear aula</span>
+    </a>
+</li>
+<li class="nav-item menu-items {{ Route::currentRouteName() == 'classrooms.index' ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('classrooms.index') }}">
+        <span class="menu-icon">
+            <i class="mdi mdi-table-large"></i>
+        </span>
+        <span class="menu-title">Lista de Aulas</span>
+    </a>
+</li>
+<li class="nav-item menu-items">
+            <a class="nav-link" href="{{ route('schools.index')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-table-large"></i>
               </span>
-              <span class="menu-title">Crear escuela</span>
+              <span class="menu-title">Lista de escuelas</span>
             </a>
           </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link"  href="{{ route('classrooms.create')}}">
-              <span class="menu-icon">
-                <i class="mdi mdi-table-large"></i>
-              </span>
-              <span class="menu-title">Crear aula</span>
-            </a>
-          </li>
-         
+
           
         </ul>
       </nav>

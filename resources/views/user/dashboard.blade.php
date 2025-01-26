@@ -34,22 +34,20 @@
           <li class="nav-item profile">
             <div class="profile-desc">
            
-         
-          <li class="nav-item menu-items">
-            <a class="nav-link"  href="">
+            <li class="nav-item menu-items">
+            <a class="nav-link" href="{{route('user.dashboard')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-table-large"></i>
               </span>
               <span class="menu-title">Escuelas</span>
             </a>
           </li>
-
-           <li class="nav-item menu-items">
-            <a class="nav-link" href="">
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ route('reservations.index')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-table-large"></i>
               </span>
-              <span class="menu-title">Reservas</span>
+              <span class="menu-title">Mis Reservas</span>
             </a>
           </li>
           

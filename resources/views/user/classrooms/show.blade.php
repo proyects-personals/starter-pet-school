@@ -29,7 +29,7 @@
         </div>
         <ul class="nav">
           <li class="nav-item menu-items">
-            <a class="nav-link" href="{{route("user.dashboard")}}">
+            <a class="nav-link" href="{{route('user.dashboard')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-table-large"></i>
               </span>
@@ -37,11 +37,11 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{ route('reservations.index')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-table-large"></i>
               </span>
-              <span class="menu-title">Reservas</span>
+              <span class="menu-title">Mis Reservas</span>
             </a>
           </li>
         </ul>
