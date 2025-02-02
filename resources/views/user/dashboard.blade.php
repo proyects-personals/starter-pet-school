@@ -24,11 +24,9 @@
   <body>
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:#2d3e50;">
-        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top" style="background-color:#2d3e50;">
-      
-          <a class="sidebar-brand brand-logo" href="../../index.html"><img src="../imagenes\dog.png" alt="logo" style="height: 70px; object-fit: contain;  margin-top: 30px;" /></a>
-          <a class="sidebar-brand brand-logo-mini" href="../../index.html"><img src="{{asset('assets-back/images/logo-mini.svg')}}" alt="logo" /></a>
+      <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:#EEFFFA;">
+        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top" style="background-color:#EEFFFA;">
+          <a class="sidebar-brand brand-logo"><img src="../imagenes\gl.png" alt="logo" style="height: 90px; object-fit: contain;  margin-top: 30px;" /></a>
         </div>
         <ul class="nav">
           <li class="nav-item profile">
@@ -56,9 +54,10 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_navbar.html -->
-        <nav class="navbar p-0 fixed-top d-flex flex-row" style="background-color: #2d3e50;">
-          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="imagenes" /></a>
+        <nav class="navbar p-0 fixed-top d-flex flex-row" style="background-color: #EEFFFA;">
+          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center" style="background-color: #EEFFFA;">
+            {{-- Imagen pequeña --}}
+            <a class="navbar-brand brand-logo-mini"><img src="../imagenes\gl.png" alt="logo" style="width: 120px; height: auto;"  /></a>
           </div>
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -80,21 +79,22 @@
                     <div class="dropdown-divider"></div>
                   
                     <!-- Opción de cerrar sesión como enlace -->
-                    <a class="dropdown-item preview-item">
+                    <a class="dropdown-item preview-item" style="background-color: #EEFFFA; border: none;">
                       <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-logout text-danger"></i>
-                        </div>
+                          <div class="preview-icon rounded-circle" style="background-color: #EEFFFA;">
+                              <i class="mdi mdi-logout text-danger"></i>
+                          </div>
                       </div>
                       <div class="dropdown-divider"></div>
                       <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="dropdown-item text-black">
-                          <p class="preview-subject mb-1">Log out</p>
-                        </button>
+                          @csrf
+                          <button type="submit" class="dropdown-item text-black" 
+                              style="background-color: #EEFFFA; color: black; border: none; width: 100%; padding: 10px; text-align: center;">
+                              <p class="preview-subject mb-1">Log out</p>
+                          </button>
                       </form>
-                    </div>
-                    </a>
+                  </a>
+                  
                   
                     <!-- Opción de cerrar sesión como botón en un formulario -->
   
@@ -107,14 +107,14 @@
         </nav>
         <!-- partial -->
         <div class="main-panel">
-          <div class="content-wrapper  "style="background-color: slategrey ">
+          <div class="content-wrapper  "style="background-color:  #F8F8F8; ">
             <div class="page-header">
               <h3 class="page-title" style="color: black;" >Escuelas</h3>
              
             </div>
             <div class="row">
               <div class="col">
-                <div class="card" style="background-color: #D3D3D3;">
+                <div class="card" style="background-color: #b9f3b9;">
                   <div class="card-body">
    
                     <div class="table-responsive">
@@ -122,7 +122,7 @@
                         <thead>
                           <tr>
                             <th class="px-4 py-2 text-left" style="color: black;">Escuelas</th>
-                            <th class="px-4 py-2 text-left" style="color: black;">Descripción</th>
+                            <th class="px-4 py-2 text-left" style="color: black;">Dirección</th>
                             <th class="px-4 py-2 text-left" style="color: black;">Acción</th>
 
                           </tr>
@@ -132,14 +132,13 @@
                             <tr>
                               <td>
                                 <div class="max-w-sm rounded overflow-hidden text-black">
-                                  <img class="w-full" src="{{ asset('path_to_image.jpg') }}" alt="Escuela">
                                   <div class="px-6 py-4">
                                     <div class="font-bold text-xl mb-2">{{ $school->name }}</div>
                                   </div>
                                 </div>
                                 </td>
                                 <td>
-                                  <p class="text-black">{{ $school->description }}</p>
+                                  <p class="text-black">{{ $school->address }}</p>
                                 </td>
                                 <td>
                                   <div class="px-6 pt-4 pb-2">

@@ -21,7 +21,13 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                // Comprobar si el usuario ha verificado su correo
+                if (Auth::user()->hasVerifiedEmail()) {
+                    return redirect(RouteServiceProvider::HOME);
+                } else {
+                    // Si no ha verificado el email, redirige a la página de verificación
+                    return redirect()->route('verification.notice');
+                }
             }
         }
 

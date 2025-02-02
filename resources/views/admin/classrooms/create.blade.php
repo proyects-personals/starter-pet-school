@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>Crear aula</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('assets-back/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets-back/vendors/css/vendor.bundle.base.css')}}">
@@ -18,14 +18,17 @@
     <link rel="stylesheet" href="{{asset('assets-back/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets-back/images/favicon.png')}}" />
+    
+  
+  
   </head>
   <body>
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:#2d3e50;">
-        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top" style="background-color:#2d3e50;">
-          <a class="sidebar-brand brand-logo" href="../../index.html"><img src="{{asset('assets-back//images/logo.svg')}}" alt="logo" /></a>
-          <a class="sidebar-brand brand-logo-mini" href="../../index.html"><img src="{{asset('assets-back//images/logo-mini.svg')}}" alt="logo" /></a>
+     <!-- cambiar color-->
+     <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:#EEFFFA;">
+      <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top" style="background-color:#EEFFFA;">
+        <a class="sidebar-brand brand-logo"><img src="{{asset('imagenes/gl.png')}}" alt="logo" style="height: 90px; object-fit: contain;  margin-top: 5px;"/></a>
         </div>
         <ul class="nav">
          
@@ -39,13 +42,14 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="{{ route('admin.schools.create')}}">
-              <span class="menu-icon">
-                <i class="mdi mdi-table-large"></i>
-              </span>
-              <span class="menu-title">Crear escuela</span>
+            <a class="nav-link" href="{{ route('schools.create') }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-table-large"></i>
+                </span>
+                <span class="menu-title">Crear escuela</span>
             </a>
-          </li>
+        </li>
+        
           <li class="nav-item menu-items">
             <a class="nav-link" href="{{ route('classrooms.create')}}">
               <span class="menu-icon">
@@ -77,9 +81,10 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_navbar.html -->
-        <nav class="navbar p-0 fixed-top d-flex flex-row" style="background-color: #2d3e50;">
-          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="{{asset('assets-back/images/logo-mini.svg" alt="logo')}}" /></a>
+        <nav class="navbar p-0 fixed-top d-flex flex-row" style="background-color: #EEFFFA;">
+          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center" style="background-color: #EEFFFA;">
+            {{-- Imagen pequeña --}}
+            <a class="navbar-brand brand-logo-mini"><img src="{{asset('imagenes/gl.png')}}" alt="logo" style="width: 120px; height: auto;"  /></a>
           </div>
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -101,21 +106,21 @@
                     <div class="dropdown-divider"></div>
                   
                     <!-- Opción de cerrar sesión como enlace -->
-                    <a class="dropdown-item preview-item">
+                    <a class="dropdown-item preview-item" style="background-color: #EEFFFA; border: none;">
                       <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-logout text-danger"></i>
-                        </div>
+                          <div class="preview-icon rounded-circle" style="background-color: #EEFFFA;">
+                              <i class="mdi mdi-logout text-danger"></i>
+                          </div>
                       </div>
                       <div class="dropdown-divider"></div>
                       <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="dropdown-item text-black">
-                          <p class="preview-subject mb-1">Log out</p>
-                        </button>
+                          @csrf
+                          <button type="submit" class="dropdown-item text-black" 
+                              style="background-color: #EEFFFA; color: black; border: none; width: 100%; padding: 10px; text-align: center;">
+                              <p class="preview-subject mb-1">Log out</p>
+                          </button>
                       </form>
-                    </div>
-                    </a>
+                  </a>
                   
                     <!-- Opción de cerrar sesión como botón en un formulario -->
                    
@@ -129,62 +134,59 @@
         </nav>
         <!-- partial -->
         <div class="main-panel">
-          <div class="content-wrapper  "style="background-color: slategrey ">
+          <div class="content-wrapper  "style="background-color:  #F8F8F8; ">
             <div class="page-header">
-              <h3 class="page-title text-2xl font-semibold mb-6 text-black">Escuelas</h3>
-             
+              <h3 class="page-title block text-lg font-medium text-black">Aulas</h3>
             </div>
-            <div class="row">
-              <div class="col">
-                <div class="card" style="background-color: #D3D3D3;">
-                  <div class="card-body">
-                    </p>
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
-                      <h1 class="text-2xl font-semibold mb-6 text-black">Crear Aula</h1>
-                        <form action="{{ route('classrooms.store') }}" method="POST" class="space-y-6">
-                            @csrf
-                            
-                            <!-- Escuela -->
-                            <div>
-                                <label for="school_id" class="text-2xl font-semibold mb-6 text-black">Escuela</label>
-                                <select name="school_id" id="school_id" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-200 dark:focus:ring-indigo-500 dark:focus:border-indigo-500">
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+                  <div class="card shadow-lg" style="background-color: #b9f3b9;">
+                      <div class="card-body">
+                          <h2 class="text-2xl font-medium mb-4 text-center text-lg font-bold text-black">Crear Aula</h2>
+                          <form action="{{ route('classrooms.store') }}" method="POST" enctype="space-y-6">
+                              @csrf
+                              {{-- Aula --}}
+                              <div>
+                                <label for="school_id" class="form-label font-weight-bold text-black">Escuela</label>
+                                <select name="school_id" id="school_id" class="form-control text-black bg-white">
                                     @foreach($schools as $school)
                                         <option value="{{ $school->id }}">{{ $school->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-    
-                            <!-- Nombre del Aula -->
+                            {{-- Nombre del Aula--}}
                             <div>
-                                <label for="name" class="text-2xl font-semibold mb-6 text-black">Nombre del Aula</label>
-                                <input type="text" name="name" id="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-200 dark:focus:ring-indigo-500 dark:focus:border-indigo-500" />
-                            </div>
-    
-                            <!-- Capacidad -->
-                            <div>
-                                <label for="capacity" class="text-2xl font-semibold mb-6 text-black">Capacidad</label>
-                                <input type="number" name="capacity" id="capacity" required class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-200 dark:focus:ring-indigo-500 dark:focus:border-indigo-500" />
-                            </div>
-    
-                            <!-- Botón -->
-                            <div class="mt-6">
-                              <br>
-                              <button type="submit" class="text-2xl font-semibold mb-6" style="background-color: #8f5fe8; color: black;">Crear Aula</button>
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                              <label for="name" class="form-label font-weight-bold text-black">Nombre del Aula</label>
+                              <input type="text" name="name" id="name" required class="form-control" style="background-color: white; color: black;">
+                          </div>
+                          {{-- Capacidad --}}
+                              
+                          <div>
+                            <label for="capacity" class="form-label font-weight-bold text-black">Capacidad</label>
+                            <input type="number" name="capacity" id="capacity" required class="form-control" style="background-color: white; color: black;">
+                        </div>
+                        {{-- Horario --}}
+                        <div>
+                          <label for="schedule" class="form-label font-weight-bold text-black">Horario</label>
+                          <input type="datetime-local" name="schedule" id="schedule" class="form-control" 
+                                 style="background-color: white; color: black;"
+                                 value="{{ old('schedule', isset($reservation) ? \Carbon\Carbon::parse($reservation->schedule)->format('Y-m-d\TH:i') : '') }}">
+                      </div>
+                      
+                      
+                           {{-- Botón--}}
+                           <div class="text-center mt-4">
+                            <button type="submit" class="btn w-100 font-weight-bold" style="background-color: #8f5fe8; color: black;">
+                                Crear Aula
+                            </button>
+                        </div>                                              
+                          </form>
+                      </div>
                   </div>
-                </div>
               </div>
-             
           </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:../../partials/_footer.html -->
           
-          <!-- partial -->
-        </div>
+          </div>
         <!-- main-panel ends -->
       </div>
       <!-- page-body-wrapper ends -->
@@ -206,4 +208,3 @@
     <!-- End custom js for this page -->
   </body>
 </html>
-

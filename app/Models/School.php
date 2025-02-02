@@ -15,8 +15,7 @@ class School extends Model
         'address',
         'phone_number',
         'email',
-        'image',
-    ];
+           ];
 
     public function classrooms()
     {

@@ -22,10 +22,9 @@
   <body>
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:#2d3e50;">
-        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top" style="background-color:#2d3e50;">
-          <a class="sidebar-brand brand-logo" href="../../index.html"><img src="../imagenes\dog.png" alt="logo" style="height: 70px; object-fit: contain;  margin-top: 30px;" /></a>
-          <a class="sidebar-brand brand-logo-mini" href="../../index.html"><img src="{{asset('assets-back/images/logo-mini.svg')}}" alt="logo" /></a>
+      <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:#EEFFFA;">
+        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top" style="background-color:#EEFFFA;">
+          <a class="sidebar-brand brand-logo" ><img src="{{asset('imagenes/gl.png')}}" alt="logo" style="height: 90px; object-fit: contain;  margin-top: 5px;"/></a>
         </div>
         <ul class="nav">
           <li class="nav-item menu-items">
@@ -46,11 +45,11 @@
           </li>
         </ul>
       </nav>
-      <div class="container-fluid page-body-wrapper" style="background-color: slategrey;">
+      <div class="container-fluid page-body-wrapper" style="background-color: #F8F8F8;">
         <!-- partial:../../partials/_navbar.html -->
-        <nav class="navbar p-0 fixed-top d-flex flex-row" style="background-color: #2d3e50;">
-          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="{{asset('assets-back/images/logo-mini.svg')}}" alt="logo" /></a>
+        <nav class="navbar p-0 fixed-top d-flex flex-row" style="background-color: #F8F8F8;">
+          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center" style="background-color: #EEFFFA;">
+            <a class="navbar-brand brand-logo-mini" ><img src="{{asset('imagenes/gl.png')}}" alt="logo" style="width: 120px; height: auto;"  /></a>
           </div>
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -67,20 +66,21 @@
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
                     <div class="dropdown-divider"></div>
                    <!-- Opción de cerrar sesión -->
-                    <a class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-logout text-danger"></i>
+                   <a class="dropdown-item preview-item" style="background-color: #EEFFFA; border: none;">
+                    <div class="preview-thumbnail">
+                        <div class="preview-icon rounded-circle" style="background-color: #EEFFFA;">
+                            <i class="mdi mdi-logout text-danger"></i>
                         </div>
-                      </div>
-                      <div class="dropdown-divider"></div>
-                      <form method="POST" action="{{ route('logout') }}">
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="dropdown-item text-black">
-                          <p class="preview-subject mb-1">Log out</p>
+                        <button type="submit" class="dropdown-item text-black" 
+                            style="background-color: #EEFFFA; color: black; border: none; width: 100%; padding: 10px; text-align: center;">
+                            <p class="preview-subject mb-1">Log out</p>
                         </button>
-                      </form>
-                    </a>
+                    </form>
+                </a>
                 </div>
               </li>
             </ul>
@@ -99,13 +99,17 @@
                   <br>
                   <br>
                   <br> <!-- Margen superior en el cuadro corregir -->
-                  <div class="card-body" style="background-color: #D3D3D3;">
+                  <div class="card-body" style="background-color: #b9f3b9;">
       
                     <!-- Título y descripción -->
                     <h5 class="card-text text-black">{{ $classroom->name }}</h5> <!-- Asegúrate de que aquí esté la clase text-black -->
                     <p class="card-text text-black">{{ $classroom->description }}</p>
                     <p class="card-text text-black">Capacidad: {{ $classroom->capacity }}</p>
-                
+                    <p class="card-text text-black">{{ \Carbon\Carbon::parse($classroom->schedule)->format('d/m/Y h:i A') }}</p>
+
+
+                    
+                  
                     @if ($classroom->capacity > 0)
                       @php
                         $hasReservation = $classroom->reservations()->where('user_id', auth()->id())->exists();
@@ -121,20 +125,8 @@
                           <input type="hidden" name="school_id" value="{{ $school->id }}">
                           <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                           <input type="hidden" name="status" value="pendiente">
-                
-                          <!-- Campo para seleccionar la fecha -->
-                          <div class="mb-3">
-                            <label for="date_{{ $classroom->id }}" class="form-label text-black">Fecha</label>
-                            <input type="date" id="date_{{ $classroom->id }}" name="date" required class="form-control">
-                          </div>
-                
-                          <!-- Campo para seleccionar la hora -->
-                          <div class="mb-3">
-                            <label for="time_{{ $classroom->id }}" class="form-label text-black">Hora</label>
-                            <input type="time" id="time_{{ $classroom->id }}" name="time" required class="form-control">
-                          </div>
-                
                           <!-- Botón para enviar el formulario -->
+                     
                           <button type="submit" class="btn btn-primary w-100 text-black">Reservar Aula</button>
                         </form>
                       @endif

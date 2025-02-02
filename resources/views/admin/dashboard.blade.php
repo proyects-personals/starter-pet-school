@@ -54,10 +54,9 @@
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
       <!-- cambiar color-->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:#2d3e50;">
-        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top" style="background-color:#2d3e50;">
-          <a class="sidebar-brand brand-logo" href="../../index.html"><img src="../imagenes\dog.png" alt="logo" style="height: 65px; object-fit: contain;  margin-top: 5px;" /></a>
-          <a class="sidebar-brand brand-logo-mini" href="../../index.html"><img src="{{asset('assets-back//images/logo-mini.svg')}}" alt="logo" /></a>
+      <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:#EEFFFA;">
+        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top" style="background-color:#EEFFFA;">
+          <a class="sidebar-brand brand-logo" ><img src="../imagenes\gl.png" alt="logo" style="height: 90px; object-fit: contain;  margin-top: 5px;" /></a>
         </div>
         <ul class="nav">
           <li class="nav-item menu-items">
@@ -104,9 +103,10 @@
       </nav>
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
-        <nav class="navbar p-0 fixed-top d-flex flex-row" style="background-color: #2d3e50;">
-          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="{{asset('assets-back/images/logo-mini.svg')}}" alt="logo" /></a>
+        <nav class="navbar p-0 fixed-top d-flex flex-row" style="background-color:#EEFFFA;">
+          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center" style="background-color: #EEFFFA;">
+            {{-- Imagen pequeña --}}
+            <a class="navbar-brand brand-logo-mini"><img src="../imagenes\gl.png" alt="logo" style="width: 120px; height: auto;"  /></a>
           </div>
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -120,23 +120,24 @@
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-logout text-danger"></i>
-                        </div>
-                      </div>
-                      <div class="dropdown-divider"></div>
-                      <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="dropdown-item text-black">
-                          <p class="preview-subject mb-1">Log out</p>
-                        </button>
-                      </form>
-                    </a>
-                </div>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown" style="background-color: white; border: 1px solid #DDDDDD; box-shadow: none;">
+                  <div class="dropdown-divider" style="background-color: #DDDDDD;"></div>
+               <a class="dropdown-item preview-item" style="background-color: white; color: black; display: flex; align-items: center;">
+            <div class="preview-thumbnail">
+                 <div class="preview-icon rounded-circle" style="background-color: white;">
+                <i class="mdi mdi-logout text-danger"></i>
+             </div>
+         </div>
+              <form method="POST" action="{{ route('logout') }}" style="margin: 0; width: 100%;">
+                   @csrf
+                <button type="submit" class="dropdown-item text-black" 
+                    style="background-color: white; color: black; border: none; width: 100%; text-align: left;">
+                  <p class="preview-subject mb-1">Log out</p>
+              </button>
+            </form>
+        </a>
+    </div>
+
               </li>
             </ul>
             <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
@@ -145,14 +146,15 @@
           </div>
         </nav>
         <div class="main-panel">
-          <div class="content-wrapper  "style="background-color: slategrey ">
+          <div class="content-wrapper  "style="background-color: #F8F8F8;">
             <div class="page-header">
               <h3 class="page-title" style="color: black;">Reservas de clases</h3>
 
             </div>
+            {{--  --}}
             <div class="row">
               <div class="col">
-                <div class="card" style="background-color: #D3D3D3;">
+                <div class="card" style="background-color:#b9f3b9;">
                   
                     <div class="table-responsive">
                         <table class="min-w-full table-auto">
@@ -174,7 +176,8 @@
                                       <td style="color: black;">({{ $reservation->user->email }})</td>
                                       <td style="color: black;">({{ $reservation->school->name }})</td>
                                       <td class="px-4 py-2" style="color: black;">{{ $reservation->classroom->name }}</td>
-                                      <td class="px-4 py-2" style="color: black;">{{ $reservation->created_at->format('d/m/Y H:i') }}</td>
+                                      <td class="px-4 py-2" style="color: black;">{{ \Carbon\Carbon::parse($reservation->classroom->schedule)->format('d/m/Y h:i A') }}</td>
+                                    
                                       <td class="px-4 py-2" style="color: black;">{{ $reservation->status }}</td>
                                        <td class="px-4 py-2">
                                             <form action="{{ route('reservations.update', $reservation->id) }}" method="POST" class="inline-block">

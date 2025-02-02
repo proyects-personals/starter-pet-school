@@ -80,3 +80,5 @@ class UserReservationController extends Controller
         return redirect()->back()->with('success', 'Reserva realizada con éxito.');
     }
 }
+
+

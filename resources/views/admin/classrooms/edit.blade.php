@@ -22,10 +22,9 @@
   <body>
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:#2d3e50;">
-        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top" style="background-color:#2d3e50;">
-          <a class="sidebar-brand brand-logo" href="../../index.html"><img src="{{asset('assets-back//images/logo.svg')}}" alt="logo" /></a>
-          <a class="sidebar-brand brand-logo-mini" href="../../index.html"><img src="{{asset('assets-back//images/logo-mini.svg')}}" alt="logo" /></a>
+      <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:#EEFFFA;">
+        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top" style="background-color:#EEFFFA;">
+          <a class="sidebar-brand brand-logo"><img src="{{asset('imagenes/gl.png')}}" alt="logo" style="height: 90px; object-fit: contain;  margin-top: 5px;"/></a>
         </div>
         <ul class="nav">
          
@@ -76,7 +75,7 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_navbar.html -->
-        <nav class="navbar p-0 fixed-top d-flex flex-row" style="background-color: #2d3e50;">
+        <nav class="navbar p-0 fixed-top d-flex flex-row" style="background-color: #EEFFFA;">
           <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
             <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="{{asset('assets-back/images/logo-mini.svg" alt="logo')}}" /></a>
           </div>
@@ -128,11 +127,11 @@
         </nav>
         <!-- partial -->
         <div class="main-panel">
-          <div class="content-wrapper  "style="background-color: slategrey ">
+          <div class="content-wrapper  "style="background-color: #F8F8F8 ">
            
             <div class="row">
               <div class="col">
-                <div class="card" style="background-color: #D3D3D3;">
+                <div class="card" style="background-color: #b9f3b9;">
                   <div class="card-body">
                     </p>
                     <div class="p-6 text-gray-900 dark:text-gray-100">

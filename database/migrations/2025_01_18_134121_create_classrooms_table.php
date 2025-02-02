@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('school_id')->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->integer('capacity'); // Capacidad máxima
+            $table->string('schedule'); // Nuevo campo para el horario
             $table->timestamps();
         });
     }

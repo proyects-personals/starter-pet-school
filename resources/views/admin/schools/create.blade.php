@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>Crear escuela</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('assets-back/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets-back/vendors/css/vendor.bundle.base.css')}}">
@@ -19,18 +19,14 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets-back/images/favicon.png')}}" />
     
-  
-  
   </head>
   <body>
     <div class="container-scroller">
       <!-- partial:../../partials/_sidebar.html -->
      <!-- cambiar color-->
-     <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:#2d3e50;">
-      <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top" style="background-color:#2d3e50;">
-        <a class="sidebar-brand brand-logo" href="../../index.html"><img src="{{asset('assets-back//images/logo.svg')}}" alt="logo" /></a>
-          
-          <a class="sidebar-brand brand-logo-mini" href="../../index.html"><img src="{{asset('assets-back//images/logo-mini.svg')}}" alt="logo" /></a>
+     <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:#EEFFFA;">
+      <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top" style="background-color:#EEFFFA;">
+        <a class="sidebar-brand brand-logo"><img src="{{asset('imagenes\gl.png')}}" alt="logo" style="height: 90px; object-fit: contain;  margin-top: 5px;"/></a>
         </div>
         <ul class="nav">
          
@@ -44,7 +40,7 @@
             </a>
           </li>
           <li class="nav-item menu-items {{ Route::currentRouteName() == 'schools.create' ? 'active' : '' }}">
-    <a class="nav-link" href="{{ route('schools.create') }}">
+    <a class="nav-link" href="{{ route ("schools.create")}}">
         <span class="menu-icon">
             <i class="mdi mdi-table-large"></i>
         </span>
@@ -82,9 +78,10 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_navbar.html -->
-        <nav class="navbar p-0 fixed-top d-flex flex-row" style="background-color: #2d3e50;">
-          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="{{asset('assets-back/images/logo-mini.svg" alt="logo')}}" /></a>
+        <nav class="navbar p-0 fixed-top d-flex flex-row" style="background-color: #EEFFFA;">
+          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center" style="background-color: #EEFFFA;">
+            {{-- Imagen pequeña --}}
+            <a class="navbar-brand brand-logo-mini"><img src="{{asset('imagenes\gl.png')}}" alt="logo" style="width: 120px; height: auto;"  /></a>
           </div>
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -106,25 +103,24 @@
                     <div class="dropdown-divider"></div>
                   
                     <!-- Opción de cerrar sesión como enlace -->
-                    <a class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-logout text-danger"></i>
+                   <!-- Opción de cerrar sesión como enlace -->
+                   <a class="dropdown-item preview-item" style="background-color: #EEFFFA; border: none;">
+                    <div class="preview-thumbnail">
+                        <div class="preview-icon rounded-circle" style="background-color: #EEFFFA;">
+                            <i class="mdi mdi-logout text-danger"></i>
                         </div>
-                      </div>
-                      <div class="dropdown-divider"></div>
-                      <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="dropdown-item text-black">
-                          <p class="preview-subject mb-1">Log out</p>
-                        </button>
-                      </form>
                     </div>
-                    </a>
+                    <div class="dropdown-divider"></div>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="dropdown-item text-black" 
+                            style="background-color: #EEFFFA; color: black; border: none; width: 100%; padding: 10px; text-align: center;">
+                            <p class="preview-subject mb-1">Log out</p>
+                        </button>
+                    </form>
+                </a>
                   
                     <!-- Opción de cerrar sesión como botón en un formulario -->
-                   
-                  
               </li>
             </ul>
             <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
@@ -134,72 +130,63 @@
         </nav>
         <!-- partial -->
         <div class="main-panel">
-          <div class="content-wrapper  "style="background-color: slategrey ">
+          <div class="content-wrapper  "style="background-color: #F8F8F8;">
             <div class="page-header">
               <h3 class="page-title block text-lg font-medium text-black">Escuelas</h3>
              
             </div>
             <div class="row justify-content-center">
               <div class="col-md-8">
-                  <div class="card shadow-lg" style="background-color: white;">
+                  <div class="card shadow-lg" style="background-color: #b9f3b9">
                       <div class="card-body">
                           <h2 class="text-2xl font-medium mb-4 text-center text-lg font-bold text-black">Crear Escuela</h2>
                           
                           <form action="{{ route('schools.store') }}" method="POST" enctype="multipart/form-data">
                               @csrf
                               <div class="mb-4">
-                                  <label for="name" class="form-label font-weight-bold text-black">Nombre de la Escuela</label>
-                                  <input type="text" name="name" id="name" required class="form-control">
+                                <label for="name" class="form-label font-weight-bold text-black">Nombre de la Escuela</label>
+                                <input type="text" name="name" id="name" required class="form-control" style="background-color: white; color: black;">
                                   @error('name')
                                       <span class="text-danger text-sm mt-1">{{ $message }}</span>
                                   @enderror
                               </div>
           
                               <div class="mb-4">
-                                  <label for="description" class="form-label font-weight-bold text-black">Descripción</label>
-                                  <textarea name="description" id="description" rows="4" class="form-control text-black" placeholder="Escribe la descripción aquí..."></textarea>
+                                <label for="description" class="form-label font-weight-bold text-black">Descripción</label>
+                                <textarea name="description" id="description" rows="4" class="form-control" style="background-color: white; color: black;" placeholder="Escribe la descripción aquí..."></textarea>
                                   @error('description')
                                       <span class="text-danger text-sm mt-1">{{ $message }}</span>
                                   @enderror
                               </div>
                               
                               <div class="mb-4">
-                                  <label for="address" class="form-label font-weight-bold text-black">Dirección</label>
-                                  <input type="text" name="address" id="address" required class="form-control text-black">
+                                <label for="address" class="form-label font-weight-bold text-black">Dirección</label>
+                                  <input type="text" name="address" id="address" required class="form-control" style="background-color: white; color: black;">
                                   @error('address')
                                       <span class="text-danger text-sm mt-1">{{ $message }}</span>
                                   @enderror
                               </div>
           
                               <div class="mb-4">
-                                  <label for="phone_number" class="form-label font-weight-bold text-black">Teléfono</label>
-                                  <input type="text" name="phone_number" id="phone_number" class="form-control text-black">
+                                <label for="phone_number" class="form-label font-weight-bold text-black">Teléfono</label>
+                                <input type="text" name="phone_number" id="phone_number" class="form-control" style="background-color: white; color: black;">
                                   @error('phone_number')
                                       <span class="text-danger text-sm mt-1">{{ $message }}</span>
                                   @enderror
                               </div>
           
                               <div class="mb-4">
-                                  <label for="email" class="form-label font-weight-bold text-black">Correo Electrónico</label>
-                                  <input type="email" name="email" id="email" class="form-control text-black">
+                                <label for="email" class="form-label font-weight-bold text-black">Correo Electrónico</label>
+                                <input type="email" name="email" id="email" class="form-control" style="background-color: white; color: black;">
                                   @error('email')
                                       <span class="text-danger text-sm mt-1">{{ $message }}</span>
                                   @enderror
                               </div>
-          
-                              <div class="mb-4">
-                                  <label for="image" class="form-label font-weight-bold text-black">Imagen</label>
-                                  <input type="file" name="image" id="image" class="form-control text-black">
-                                  @error('image')
-                                      <span class="text-danger text-sm mt-1">{{ $message }}</span>
-                                  @enderror
-                              </div>
-          
                               <div class="text-center mt-4">
-                                  <button type="submit" class="btn btn-success w-100 font-weight-bold text-white">
-                                      Crear Escuela
-                                  </button>
-                              </div>
+                                <button type="submit" class="btn" style="background-color: #00d25b; color: black; font-weight: bold; width: 100%;">
+                                    Crear Escuela
+                                </button>
+                            </div>                            
                           </form>
                       </div>
                   </div>
