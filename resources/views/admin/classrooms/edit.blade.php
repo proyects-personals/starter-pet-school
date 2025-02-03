@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>Editar aulas</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('assets-back/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets-back/vendors/css/vendor.bundle.base.css')}}">
@@ -76,8 +76,9 @@
       <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar p-0 fixed-top d-flex flex-row" style="background-color: #EEFFFA;">
-          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="{{asset('assets-back/images/logo-mini.svg" alt="logo')}}" /></a>
+          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center" style="background-color: #EEFFFA;">
+            {{-- Imagen pequeña --}}
+            <a class="navbar-brand brand-logo-mini"><img src="{{asset('imagenes/gl.png')}}" alt="logo" style="width: 120px; height: auto;"  /></a>
           </div>
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -99,21 +100,21 @@
                     <div class="dropdown-divider"></div>
                   
                     <!-- Opción de cerrar sesión como enlace -->
-                    <a class="dropdown-item preview-item">
+                    <a class="dropdown-item preview-item" style="background-color: #EEFFFA; border: none;">
                       <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-logout text-danger"></i>
-                        </div>
+                          <div class="preview-icon rounded-circle" style="background-color: #EEFFFA;">
+                              <i class="mdi mdi-logout text-danger"></i>
+                          </div>
                       </div>
                       <div class="dropdown-divider"></div>
                       <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="dropdown-item text-black">
-                          <p class="preview-subject mb-1">Log out</p>
-                        </button>
+                          @csrf
+                          <button type="submit" class="dropdown-item text-black" 
+                              style="background-color: #EEFFFA; color: black; border: none; width: 100%; padding: 10px; text-align: center;">
+                              <p class="preview-subject mb-1">Log out</p>
+                          </button>
                       </form>
-                    </div>
-                    </a>
+                  </a>
                   
                     <!-- Opción de cerrar sesión como botón en un formulario -->
                    
@@ -136,28 +137,32 @@
                     </p>
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                       <h1 class="text-2xl font-semibold mb-6 text-black">Editar Aula: {{ $classroom->name }}</h1>
-                       
-
-<form action="{{ route('classrooms.update', $classroom) }}" method="POST">
-    @csrf
-    @method('PUT')
-
-    <div class="form-group">
-        <label for="name">Nombre del Aula</label>
-        <input type="text" name="name" id="name" value="{{ old('name', $classroom->name) }}" class="form-control" required>
-    </div>
-
-    <div class="form-group">
-        <label for="capacity">Capacidad</label>
-        <input type="number" name="capacity" id="capacity" value="{{ old('capacity', $classroom->capacity) }}" class="form-control" required>
-    </div>
-
-    <button type="submit" class="btn btn-success mt-3">Actualizar Aula</button>
-</form>
-
-
-
-
+                      <form action="{{ route('classrooms.update', $classroom) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                    
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    
+                        <div class="form-group">
+                            <label for="name" style="color: black;">Nombre del Aula</label>
+                            <input type="text" name="name" id="name" value="{{ old('name', $classroom->name) }}" class="form-control" style="background-color: white; color: black;" required>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label for="capacity" style="color: black;">Capacidad</label>
+                            <input type="number" name="capacity" id="capacity" value="{{ old('capacity', $classroom->capacity) }}" class="form-control" style="background-color: white; color: black;" required>
+                        </div>
+                    
+                        <button type="submit" class="btn btn-success mt-3">Actualizar Aula</button>
+                    </form>  
                     </div>
                 </div>
                   </div>
@@ -165,16 +170,7 @@
               </div>
              
           </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:../../partials/_footer.html -->
-          
-          <!-- partial -->
-        </div>
-        <!-- main-panel ends -->
-      </div>
-      <!-- page-body-wrapper ends -->
-    </div>
-    <!-- container-scroller -->
+  
     <!-- plugins:js -->
     <script src="{{asset('assets-back/vendors/js/vendor.bundle.base.js')}}"></script>
     <!-- endinject -->

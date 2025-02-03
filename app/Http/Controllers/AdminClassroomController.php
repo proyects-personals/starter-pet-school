@@ -54,7 +54,6 @@ class AdminClassroomController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'capacity' => 'required|integer|min:1',
-            'schedule' => 'required|string|max:255',
         ]);
 
         $classroom->update($request->only(['name', 'capacity','schedule']));

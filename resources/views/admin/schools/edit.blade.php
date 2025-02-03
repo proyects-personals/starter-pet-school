@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>Editar escuela</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('assets-back/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets-back/vendors/css/vendor.bundle.base.css')}}">
@@ -74,8 +74,9 @@
       <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar p-0 fixed-top d-flex flex-row" style="background-color: #EEFFFA;">
-          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="{{asset('assets-back/images/logo-mini.svg" alt="logo')}}" /></a>
+          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center" style="background-color: #EEFFFA;">
+            {{-- Imagen pequeña --}}
+            <a class="navbar-brand brand-logo-mini"><img src="{{asset('imagenes/gl.png')}}" alt="logo" style="width: 120px; height: auto;"  /></a>
           </div>
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -97,21 +98,21 @@
                     <div class="dropdown-divider"></div>
                   
                     <!-- Opción de cerrar sesión como enlace -->
-                    <a class="dropdown-item preview-item">
+                    <a class="dropdown-item preview-item" style="background-color: #EEFFFA; border: none;">
                       <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-logout text-danger"></i>
-                        </div>
+                          <div class="preview-icon rounded-circle" style="background-color: #EEFFFA;">
+                              <i class="mdi mdi-logout text-danger"></i>
+                          </div>
                       </div>
                       <div class="dropdown-divider"></div>
                       <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="dropdown-item text-black">
-                          <p class="preview-subject mb-1">Log out</p>
-                        </button>
+                          @csrf
+                          <button type="submit" class="dropdown-item text-black" 
+                              style="background-color: #EEFFFA; color: black; border: none; width: 100%; padding: 10px; text-align: center;">
+                              <p class="preview-subject mb-1">Log out</p>
+                          </button>
                       </form>
-                    </div>
-                    </a>
+                  </a>
                   
                     <!-- Opción de cerrar sesión como botón en un formulario -->
                    
@@ -141,29 +142,29 @@
     @method('PUT')
 
     <div class="form-group">
-        <label for="name">Nombre de la escuela</label>
-        <input type="text" name="name" id="name" value="{{ old('name', $school->name) }}" class="form-control" required>
-    </div>
+      <label for="name"  style="color: black;">Nombre de la escuela</label>
+      <input type="text" name="name" id="name" value="{{ old('name', $school->name) }}" class="form-control" style="background-color: white; color: black;" required>
+  </div>
 
-    <div class="form-group">
-        <label for="description">Descripción</label>
-        <textarea name="description" id="description" class="form-control">{{ old('description', $school->description) }}</textarea>
-    </div>
+  <div class="form-group">
+    <label for="description"  style="color: black;">Descripción</label>
+    <textarea name="description" id="description" class="form-control" style="background-color: white; color: black;">{{ old('description', $school->description) }}</textarea>
+</div>
 
-    <div class="form-group">
-        <label for="address">Dirección</label>
-        <input type="text" name="address" id="address" value="{{ old('address', $school->address) }}" class="form-control">
-    </div>
+<div class="form-group">
+  <label for="address"  style="color: black;">Dirección</label>
+  <input type="text" name="address" id="address" value="{{ old('address', $school->address) }}" class="form-control" style="background-color: white; color: black;">
+</div>
 
-    <div class="form-group">
-        <label for="phone_number">Teléfono</label>
-        <input type="text" name="phone_number" id="phone_number" value="{{ old('phone_number', $school->phone_number) }}" class="form-control">
-    </div>
+<div class="form-group">
+  <label for="phone_number"  style="color: black;">Teléfono</label>
+  <input type="text" name="phone_number" id="phone_number" value="{{ old('phone_number', $school->phone_number) }}" class="form-control" style="background-color: white; color: black;">
+</div>
 
-    <div class="form-group">
-        <label for="email">Correo Electrónico</label>
-        <input type="email" name="email" id="email" value="{{ old('email', $school->email) }}" class="form-control">
-    </div>
+<div class="form-group">
+  <label for="email" style="color: black;">Correo Electrónico</label>
+  <input type="email" name="email" id="email" value="{{ old('email', $school->email) }}" class="form-control" style="background-color: white; color: black;">
+</div>
 
     {{-- <div class="form-group">
         <label for="image">Imagen de la escuela</label>
